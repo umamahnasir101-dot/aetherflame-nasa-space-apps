@@ -5,10 +5,10 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 # ==============================================================================
-# PAGE CONFIG & LIVE SPACE VISUALS / IONIZED CYAN & DEEP VACUUM THEME
+# PAGE CONFIG & ANODIZED TITANIUM / TERRACOTTA COPPER PRECISION THEME
 # ==============================================================================
 st.set_page_config(
-    page_title="AETHERFLAME | Space Habitat Fire Safety Intelligence",
+    page_title="AETHERFLAME | Microgravity Fire Safety Telemetry",
     page_icon="🔥",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -16,229 +16,201 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
     html, body, [class*="css"] {
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
     h1, h2, h3 {
-        font-family: 'Cinzel', serif !important;
-        letter-spacing: 0.03em;
-        color: #F8FAFC !important;
+        font-family: 'Space Grotesk', sans-serif !important;
+        letter-spacing: -0.02em;
+        color: #EAECEF !important;
     }
 
-    /* Deep Vacuum Black (#080B10) Background */
+    /* Anodized Titanium (#14171A) Background */
     .stApp {
-        background:
-            radial-gradient(circle at 80% 18%, rgba(0, 229, 255, 0.11), transparent 38%),
-            radial-gradient(circle at 18% 82%, rgba(255, 77, 77, 0.07), transparent 42%),
-            #080B10;
-        color: #F8FAFC;
+        background-color: #14171A;
+        color: #EAECEF;
         overflow-x: hidden;
     }
 
-    /* Hide default Streamlit chrome for clean product look */
+    /* Hide default Streamlit chrome */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Animated Live Space Scene Banner (Stars + Orbiting Rocket + 0g Cyan Flame Orb) */
-    .space-stage {
+    /* Precision Telemetry Hero Stage */
+    .hero-stage {
         position: relative;
         width: 100%;
-        min-height: 310px;
-        border-radius: 22px;
-        background: radial-gradient(ellipse at 50% 115%, rgba(0, 229, 255, 0.16) 0%, #0F151E 60%, #080B10 100%);
-        border: 1px solid #1E293B;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.72), inset 0 0 48px rgba(0, 229, 255, 0.06);
-        padding: 36px 28px 28px 28px;
-        text-align: center;
-        overflow: hidden;
-        margin-bottom: 22px;
+        border-radius: 6px;
+        background-color: #1D2227;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 34px 32px 30px 32px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        flex-wrap: wrap;
     }
 
-    /* Twinkling Starfield Layer */
-    .stars-layer {
-        position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(2px 2px at 12% 22%, #F8FAFC, transparent),
-            radial-gradient(1.5px 1.5px at 28% 68%, #00E5FF, transparent),
-            radial-gradient(2px 2px at 45% 15%, #00E5FF, transparent),
-            radial-gradient(1.5px 1.5px at 67% 32%, #F8FAFC, transparent),
-            radial-gradient(2px 2px at 84% 72%, #00E5FF, transparent),
-            radial-gradient(1.5px 1.5px at 91% 24%, #F8FAFC, transparent),
-            radial-gradient(1.5px 1.5px at 18% 84%, #00E5FF, transparent),
-            radial-gradient(2px 2px at 56% 78%, #F8FAFC, transparent),
-            radial-gradient(1.5px 1.5px at 74% 12%, #00E5FF, transparent);
-        animation: twinkle 4s ease-in-out infinite alternate;
-        pointer-events: none;
+    .hero-left {
+        flex: 1 1 540px;
     }
 
-    @keyframes twinkle {
-        0% { opacity: 0.45; transform: scale(1); }
-        100% { opacity: 1.0; transform: scale(1.02); }
+    .hero-right {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Animated Rocket Flying Across Orbital Arc */
-    .rocket-flight {
-        position: absolute;
-        top: 26px;
-        left: -10%;
-        font-size: 2rem;
-        filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.85));
-        animation: flyOrbit 14s linear infinite;
-        pointer-events: none;
+    /* Technical Monospace Eyebrow (No Rounded Pill) */
+    .tech-eyebrow {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.76rem;
+        font-weight: 500;
+        color: #D97757;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
-    @keyframes flyOrbit {
-        0%   { left: -8%;  top: 68px; transform: rotate(18deg) scale(0.9); opacity: 0; }
-        10%  { opacity: 1; }
-        50%  { left: 50%;  top: 18px; transform: rotate(32deg) scale(1.1); }
-        90%  { opacity: 1; }
-        100% { left: 108%; top: 64px; transform: rotate(45deg) scale(0.9); opacity: 0; }
-    }
-
-    /* Pulsing Zero-G Spherical Ionized Cyan Flame Visual */
-    .zero-g-orb {
-        width: 68px;
-        height: 68px;
-        margin: 0 auto 12px auto;
+    .status-dot {
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
-        background: radial-gradient(circle at 50% 50%, #F8FAFC 10%, #7DF9FF 34%, #00E5FF 64%, rgba(0, 229, 255, 0.06) 100%);
-        box-shadow: 0 0 28px rgba(0, 229, 255, 0.8), 0 0 54px rgba(0, 229, 255, 0.35);
-        animation: pulseFlame 2.8s ease-in-out infinite;
+        background-color: #52B788;
+        display: inline-block;
     }
 
-    @keyframes pulseFlame {
-        0%, 100% { transform: scale(0.95); box-shadow: 0 0 24px rgba(0, 229, 255, 0.65), 0 0 42px rgba(0, 229, 255, 0.28); }
-        50%      { transform: scale(1.06); box-shadow: 0 0 40px rgba(0, 229, 255, 0.98), 0 0 68px rgba(0, 229, 255, 0.5); }
-    }
-
+    /* Tight Geometric Sans-Serif Title */
     .hero-title {
-        font-family: 'Cinzel', serif;
-        font-size: clamp(2.4rem, 5vw, 4.1rem);
-        font-weight: 800;
-        background: linear-gradient(90deg, #F8FAFC 0%, #80F2FF 48%, #00E5FF 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin: 4px 0 6px 0;
-        letter-spacing: 0.08em;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(2.3rem, 4.5vw, 3.6rem);
+        font-weight: 700;
+        color: #EAECEF;
+        letter-spacing: -0.03em;
+        line-height: 1.05;
+        margin: 0 0 12px 0;
     }
 
     .hero-sub {
-        font-size: 1.08rem;
-        color: #E2E8F0;
-        max-width: 760px;
-        margin: 0 auto 14px auto;
+        font-size: 0.98rem;
+        color: #B0B7C0;
+        max-width: 680px;
         line-height: 1.55;
+        margin: 0;
     }
 
-    .cyan-pill {
-        display: inline-block;
-        padding: 5px 14px;
-        border-radius: 999px;
-        background: rgba(0, 229, 255, 0.12);
-        border: 1px solid rgba(0, 229, 255, 0.45);
-        color: #00E5FF;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-    }
-
-    /* Interactive Front-Page Module Cards (#0F151E with #1E293B hairline borders) */
+    /* Sharp Hairline Module Cards (#1D2227, 5px radius) */
     .nav-card {
-        background: #0F151E;
-        border: 1px solid #1E293B;
-        border-radius: 16px;
+        background-color: #1D2227;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 5px;
         padding: 20px;
-        min-height: 175px;
-        transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+        min-height: 165px;
+        transition: border-color 0.2s ease, background-color 0.2s ease;
         margin-bottom: 10px;
     }
     .nav-card:hover {
-        transform: translateY(-4px);
-        border-color: #00E5FF;
-        box-shadow: 0 14px 32px rgba(0, 229, 255, 0.14);
+        border-color: #D97757;
+        background-color: #21272D;
     }
-    .nav-card-icon {
-        font-size: 1.85rem;
-        margin-bottom: 8px;
-    }
-    .nav-card-title {
-        font-family: 'Cinzel', serif;
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #00E5FF;
+    .nav-card-code {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: #D97757;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         margin-bottom: 6px;
     }
+    .nav-card-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #EAECEF;
+        letter-spacing: -0.01em;
+        margin-bottom: 8px;
+    }
     .nav-card-desc {
-        font-size: 0.88rem;
-        color: #CBD5E1;
-        line-height: 1.45;
+        font-size: 0.87rem;
+        color: #A0A8B2;
+        line-height: 1.48;
     }
 
-    /* Styled Streamlit Buttons */
+    /* Crisp Architectural Buttons (5px radius) */
     div.stButton > button {
         width: 100%;
-        border-radius: 12px;
-        border: 1px solid rgba(0, 229, 255, 0.45);
-        background: linear-gradient(135deg, rgba(0, 229, 255, 0.14), #0F151E);
-        color: #F8FAFC;
-        font-weight: 600;
-        padding: 0.6rem 1rem;
-        transition: all 0.2s ease;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background-color: #1D2227;
+        color: #EAECEF;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 0.55rem 0.9rem;
+        transition: all 0.18s ease;
     }
     div.stButton > button:hover {
-        border-color: #00E5FF;
-        background: #00E5FF;
-        color: #080B10;
-        box-shadow: 0 0 20px rgba(0, 229, 255, 0.45);
+        border-color: #D97757;
+        background-color: #D97757;
+        color: #14171A;
     }
 
+    /* KPI Telemetry Strip */
     .metric-card {
-        background: #0F151E;
-        border: 1px solid #1E293B;
-        border-radius: 14px;
+        background-color: #1D2227;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 5px;
         padding: 16px 18px;
-        text-align: center;
     }
     .metric-val {
         font-family: 'JetBrains Mono', monospace;
-        font-size: 1.65rem;
-        font-weight: 700;
-        color: #00E5FF;
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: #EAECEF;
     }
     .metric-lbl {
-        font-size: 0.82rem;
-        color: #CBD5E1;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: #9CA3AF;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
         margin-top: 4px;
     }
+
+    /* Callout Panels */
     .insight-box {
-        background: linear-gradient(135deg, rgba(0, 229, 255, 0.10), #0F151E);
-        border: 1px solid #1E293B;
-        border-left: 4px solid #00E5FF;
-        border-radius: 10px;
-        padding: 16px 20px;
-        margin: 12px 0;
-        color: #F8FAFC;
+        background-color: #1D2227;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-left: 3px solid #52B788;
+        border-radius: 5px;
+        padding: 15px 18px;
+        margin: 10px 0;
+        color: #EAECEF;
+        font-size: 0.92rem;
+        line-height: 1.5;
     }
     .alert-box {
-        background: linear-gradient(135deg, rgba(255, 77, 77, 0.13), #0F151E);
-        border: 1px solid #1E293B;
-        border-left: 4px solid #FF4D4D;
-        border-radius: 10px;
-        padding: 14px 18px;
+        background-color: #1D2227;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-left: 3px solid #D97757;
+        border-radius: 5px;
+        padding: 15px 18px;
         margin: 10px 0;
-        color: #F8FAFC;
+        color: #EAECEF;
+        font-size: 0.92rem;
+        line-height: 1.5;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ==============================================================================
-# NAVIGATION STATE (FRONT PAGE HOME + 5 DEDICATED INTERACTIVE TABS)
+# NAVIGATION STATE
 # ==============================================================================
 if "active_page" not in st.session_state:
     st.session_state.active_page = "Home"
@@ -552,18 +524,18 @@ PSI_DATA = [
 df = pd.DataFrame(PSI_DATA)
 
 # ==============================================================================
-# PERSISTENT TOP NAVIGATION BAR (WHEN INSIDE ANY MODULE)
+# PERSISTENT TOP TELEMETRY BAR (WHEN INSIDE ANY MODULE)
 # ==============================================================================
 if st.session_state.active_page != "Home":
     top_col1, top_col2, top_col3 = st.columns([1.4, 3.6, 1.5])
     with top_col1:
-        if st.button("← Back to Home", key="nav_back_home"):
+        if st.button("← BACK TO HOME", key="nav_back_home"):
             go_to("Home")
             st.rerun()
     with top_col2:
         st.markdown(
-            f"<div style='text-align:center; padding-top:6px; font-family:Cinzel,serif; color:#00E5FF; font-size:1.15rem; font-weight:700;'>"
-            f"🔥 AETHERFLAME &nbsp;•&nbsp; {st.session_state.active_page.upper()}"
+            f"<div style='text-align:center; padding-top:7px; font-family:JetBrains Mono,monospace; color:#EAECEF; font-size:0.95rem; letter-spacing:0.06em;'>"
+            f"<span style='color:#D97757;'>AETHERFLAME</span> &nbsp;//&nbsp; {st.session_state.active_page.upper()}"
             f"</div>",
             unsafe_allow_html=True
         )
@@ -580,19 +552,39 @@ if st.session_state.active_page != "Home":
     st.divider()
 
 # ==============================================================================
-# FRONT PAGE (HOME LANDING STAGE WITH ANIMATED ROCKET, 0G ORB & MODULE BUTTONS)
+# FRONT PAGE (ANODIZED TITANIUM STAGE + SVG SPHERICAL FLAME WIREFRAME)
 # ==============================================================================
 if st.session_state.active_page == "Home":
     st.markdown("""
-    <div class="space-stage">
-        <div class="stars-layer"></div>
-        <div class="rocket-flight">🚀</div>
-        <div class="zero-g-orb"></div>
-        <div class="cyan-pill">Super-Intelligent Microgravity Fire Safety Platform</div>
-        <div class="hero-title">AETHERFLAME</div>
-        <div class="hero-sub">
-            Turning decades of <strong>NASA Physical Sciences Informatics (PSI)</strong> microgravity combustion research
-            into clear, actionable fire prevention, detection, and suppression intelligence for the <strong>ISS, Artemis Moon Base, and Mars</strong>.
+    <div class="hero-stage">
+        <div class="hero-left">
+            <div class="tech-eyebrow">
+                <span class="status-dot"></span>
+                <span>NASA PSI COMBUSTION TELEMETRY // 0G &amp; PARTIAL-G FIRE SAFETY</span>
+            </div>
+            <div class="hero-title">AETHERFLAME</div>
+            <p class="hero-sub">
+                Engineering decision support derived from <strong>NASA's Physical Sciences Informatics (PSI)</strong> microgravity combustion archive.
+                Synthesizes flammability limits, ventilation airflow traps, and suppression protocols for the <strong>ISS, Artemis Lunar Base, and Mars transit habitats</strong>.
+            </p>
+        </div>
+        <div class="hero-right">
+            <!-- Precision SVG Wireframe of a Spherical Microgravity Diffusion Flame & Calibration Reticle -->
+            <svg width="176" height="176" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="90" cy="90" r="82" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
+                <circle cx="90" cy="90" r="64" stroke="#D97757" stroke-width="1.2" stroke-opacity="0.75"/>
+                <circle cx="90" cy="90" r="44" stroke="#52B788" stroke-width="1" stroke-dasharray="4 4"/>
+                <ellipse cx="90" cy="90" rx="64" ry="22" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+                <ellipse cx="90" cy="90" rx="22" ry="64" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+                <!-- Calibration Crosshairs -->
+                <line x1="90" y1="2" x2="90" y2="20" stroke="#D97757" stroke-width="1.2"/>
+                <line x1="90" y1="160" x2="90" y2="178" stroke="#D97757" stroke-width="1.2"/>
+                <line x1="2" y1="90" x2="20" y2="90" stroke="#D97757" stroke-width="1.2"/>
+                <line x1="160" y1="90" x2="178" y2="90" stroke="#D97757" stroke-width="1.2"/>
+                <!-- Porous Burner Core -->
+                <circle cx="90" cy="90" r="10" fill="#14171A" stroke="#EAECEF" stroke-width="1.5"/>
+                <circle cx="90" cy="90" r="3" fill="#D97757"/>
+            </svg>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -600,80 +592,80 @@ if st.session_state.active_page == "Home":
     # Key Mission KPIs Strip
     k1, k2, k3, k4 = st.columns(4)
     with k1:
-        st.markdown('<div class="metric-card"><div class="metric-val">26+</div><div class="metric-lbl">NASA PSI Investigations</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val">26+</div><div class="metric-lbl">PSI Investigations Indexed</div></div>', unsafe_allow_html=True)
     with k2:
-        st.markdown('<div class="metric-card"><div class="metric-val">10 cm/s</div><div class="metric-lbl">Low-g Ventilation Trap</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#D97757;">10 cm/s</div><div class="metric-lbl">Peak 0g Ventilation Trap</div></div>', unsafe_allow_html=True)
     with k3:
-        st.markdown('<div class="metric-card"><div class="metric-val">≥30% O₂</div><div class="metric-lbl">Lunar Habitat Atmosphere</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#52B788;">≥30% O₂</div><div class="metric-lbl">Lunar Base Atmosphere</div></div>', unsafe_allow_html=True)
     with k4:
-        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#FF4D4D;">500–800 K</div><div class="metric-lbl">Invisible Cool Flame Zone</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val">500–800 K</div><div class="metric-lbl">Invisible Cool Flame Zone</div></div>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("### Launch an Interactive Intelligence Module")
+    st.markdown("### System Modules")
 
-    # Row 1 of Front-Page Module Cards & Launch Buttons
+    # Row 1 of Sharp-Bordered Module Cards & Launch Buttons
     r1c1, r1c2, r1c3 = st.columns(3)
     with r1c1:
         st.markdown("""
         <div class="nav-card">
-            <div class="nav-card-icon">🛸</div>
-            <div class="nav-card-title">1. Microgravity Flame Lab</div>
-            <div class="nav-card-desc">Compare Earth (1g), Orbital (0g), and Lunar (1/6g) flames interactively as you adjust spacecraft HVAC ventilation airflow and cabin oxygen %.</div>
+            <div class="nav-card-code">MOD-01 // PHYSICS SIMULATOR</div>
+            <div class="nav-card-title">Microgravity Flame Lab</div>
+            <div class="nav-card-desc">Compare Earth (1g), Orbital (0g), and Lunar (1/6g) reaction zones interactively across spacecraft HVAC ventilation speeds and cabin oxygen levels.</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Open Flame Lab →", key="btn_lab"):
+        if st.button("LAUNCH MOD-01 →", key="btn_lab"):
             go_to("Flame Physics Lab")
             st.rerun()
 
     with r1c2:
         st.markdown("""
         <div class="nav-card">
-            <div class="nav-card-icon">🧠</div>
-            <div class="nav-card-title">2. Habitat Risk & SI Ranker</div>
-            <div class="nav-card-desc">Select Moon Base, ISS, Spacesuit EVA, or Mars Transit to dynamically rank the top PSI experiments for Prevention, Detection, and Suppression.</div>
+            <div class="nav-card-code">MOD-02 // HABITAT RANKING ENGINE</div>
+            <div class="nav-card-title">Habitat Risk &amp; SI Ranker</div>
+            <div class="nav-card-desc">Evaluate Moon Base, ISS, Spacesuit EVA, or Mars Transit environments to rank top PSI investigations across Prevention, Detection, and Suppression.</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Open Habitat Ranker →", key="btn_ranker"):
+        if st.button("LAUNCH MOD-02 →", key="btn_ranker"):
             go_to("Habitat SI Ranker")
             st.rerun()
 
     with r1c3:
         st.markdown("""
         <div class="nav-card">
-            <div class="nav-card-icon">📈</div>
-            <div class="nav-card-title">3. Flammability & Partial-g</div>
-            <div class="nav-card-desc">Explore the Negative Oxygen Margin of Safety (ISS Guide Fig. 8), upstream flame spread, N₂ extinguisher air-entrainment, and 10 kV partial-g proxies.</div>
+            <div class="nav-card-code">MOD-03 // BOUNDARY PREDICTOR</div>
+            <div class="nav-card-title">Flammability &amp; Partial-g</div>
+            <div class="nav-card-desc">Analyze the Negative Oxygen Margin of Safety (ISS Guide Fig. 8), upstream flame spread, N₂ extinguisher air-entrainment, and 10 kV partial-g proxies.</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Open Flammability Map →", key="btn_flam"):
+        if st.button("LAUNCH MOD-03 →", key="btn_flam"):
             go_to("Flammability & Partial-g")
             st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Row 2 of Front-Page Module Cards & Launch Buttons
+    # Row 2 of Sharp-Bordered Module Cards & Launch Buttons
     r2c1, r2c2 = st.columns(2)
     with r2c1:
         st.markdown("""
         <div class="nav-card">
-            <div class="nav-card-icon">🔬</div>
-            <div class="nav-card-title">4. PSI Repository Explorer & Comparator</div>
-            <div class="nav-card-desc">Search, filter by ISS rack hardware (CIR-ACME, CIR-MDCA, MSG, Cygnus), and compare any PSI investigations side-by-side.</div>
+            <div class="nav-card-code">MOD-04 // DATA ARCHIVE</div>
+            <div class="nav-card-title">PSI Repository Explorer &amp; Comparator</div>
+            <div class="nav-card-desc">Filter all 26 PSI combustion records by ISS rack hardware (CIR-ACME, CIR-MDCA, MSG, Cygnus) and compare experimental envelopes side-by-side.</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Open PSI Explorer →", key="btn_exp"):
+        if st.button("LAUNCH MOD-04 →", key="btn_exp"):
             go_to("PSI Explorer")
             st.rerun()
 
     with r2c2:
         st.markdown("""
         <div class="nav-card">
-            <div class="nav-card-icon">🚒</div>
-            <div class="nav-card-title">5. Space Forensics & Earth Spinoffs</div>
-            <div class="nav-card-desc">Inspect root causes of Apollo 1, Apollo 13, and Mir (1997) alongside life-saving Earth firefighter tanks, mine smoke sensors, and PBI turnout gear.</div>
+            <div class="nav-card-code">MOD-05 // HISTORICAL &amp; TERRESTRIAL</div>
+            <div class="nav-card-title">Space Forensics &amp; Earth Spinoffs</div>
+            <div class="nav-card-desc">Inspect root causes of Apollo 1, Apollo 13, and Mir (1997) alongside life-saving Earth firefighter SCBA tanks, mine smoke sensors, and PBI turnout gear.</div>
         </div>
         """, unsafe_allow_html=True)
-        if st.button("Open Forensics & Spinoffs →", key="btn_spinoff"):
+        if st.button("LAUNCH MOD-05 →", key="btn_spinoff"):
             go_to("Forensics & Spinoffs")
             st.rerun()
 
@@ -681,9 +673,9 @@ if st.session_state.active_page == "Home":
 # MODULE 1: MICROGRAVITY FLAME PHYSICS LAB
 # ==============================================================================
 elif st.session_state.active_page == "Flame Physics Lab":
-    st.title("Interactive Gravity & Cabin Ventilation Flame Simulator")
+    st.title("Gravity & Cabin Ventilation Flame Simulator")
     st.markdown(
-        "Adjust gravity level, cabin HVAC ventilation airflow, and oxygen concentration to see how flame geometry and fire risk transform between Earth (**1g**), Orbit (**0g**), and the Moon (**1/6g**)."
+        "Adjust gravitational regime, cabin HVAC airflow velocity, and ambient oxygen concentration to compare flame geometry and hazard profiles across Earth (**1g**), Orbit (**0g**), and the Moon (**1/6g**)."
     )
 
     col_ctrl, col_viz = st.columns([1, 2])
@@ -697,22 +689,22 @@ elif st.session_state.active_page == "Flame Physics Lab":
 
         if "0g" in grav_mode:
             if vent_speed == 0:
-                status = "DIM DIFFUSION SPHERE — Weak ~1W ionized blue flame; radiative heat loss can transition liquid/gas fuels into invisible Cool Flames (PSI-69 / PSI-159)."
+                status = "QUIESCENT DIFFUSION SPHERE — Weak ~1W blue flame; radiative heat loss can transition liquid/gas fuels into invisible Cool Flames (PSI-69 / PSI-159)."
                 box_cls = "insight-box"
             elif 1 <= vent_speed <= 15:
-                status = "⚠️ CRITICAL VENTILATION TRAP — Low-speed HVAC airflow (1–15 cm/s) strips CO₂ blankets and feeds fresh O₂, letting solids burn FASTER and at LOWER O₂% than on Earth (PSI-26 BASS)."
+                status = "CRITICAL VENTILATION TRAP — Low-speed HVAC airflow (1–15 cm/s) strips CO₂ blankets and supplies fresh O₂, letting solids burn FASTER and at LOWER O₂% than on Earth (PSI-26 BASS)."
                 box_cls = "alert-box"
             else:
                 status = "HIGH CONVECTIVE STRETCH — Flame elongates downstream; spread rate scales proportionally with airflow (PSI-100 SAFFIRE-III at 30 cm/s)."
                 box_cls = "insight-box"
         elif "Lunar" in grav_mode:
-            status = "🌙 LUNAR SEA REGIME (1/6g, ≥30% O₂, ≤10.2 psi) — >40% higher oxygen concentration than Earth dramatically lowers ignition energy; bounded via PSI-22 E-FIELD and FM2."
+            status = "LUNAR SEA REGIME (1/6g, ≥30% O₂, ≤10.2 psi) — >40% higher oxygen concentration than Earth dramatically lowers ignition energy; bounded via PSI-22 E-FIELD and FM2."
             box_cls = "alert-box"
         else:
-            status = "🌍 EARTH 1g BUOYANCY — Hot gases rise at ~100 cm/s, creating a tall soot-luminous teardrop flame (NASA-STD-6001 Test 1 baseline)."
+            status = "EARTH 1g BUOYANCY — Hot gases rise at ~100 cm/s, creating a tall soot-luminous teardrop flame (NASA-STD-6001 Test 1 baseline)."
             box_cls = "insight-box"
 
-        st.markdown(f'<div class="{box_cls}"><strong>Live Physics Interpretation:</strong><br>{status}</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="{box_cls}"><strong>Physics Telemetry Readout:</strong><br>{status}</div>', unsafe_allow_html=True)
 
     with col_viz:
         theta = np.linspace(0, 2 * np.pi, 300)
@@ -722,41 +714,42 @@ elif st.session_state.active_page == "Flame Physics Lab":
             r_outer = 1.6 + (o2_level - 21) * 0.03
             x_outer = r_outer * np.cos(theta) * stretch + shift_x
             y_outer = r_outer * np.sin(theta)
-            flame_color = "rgba(0, 229, 255, 0.32)" if o2_level <= 26 else "rgba(255, 77, 77, 0.35)"
-            line_color = "#00E5FF" if o2_level <= 26 else "#FF4D4D"
+            flame_color = "rgba(82, 183, 136, 0.28)" if o2_level <= 26 else "rgba(217, 119, 87, 0.34)"
+            line_color = "#52B788" if o2_level <= 26 else "#D97757"
             title_txt = f"0g Diffusion Flame Envelope ({o2_level}% O₂, {vent_speed} cm/s Airflow)"
         elif "Lunar" in grav_mode:
             stretch = 1.35 + (vent_speed / 30.0) * 0.9
             x_outer = (1.5 + (o2_level - 21) * 0.03) * np.cos(theta)
             y_outer = (1.5 + (o2_level - 21) * 0.03) * np.sin(theta) * stretch + 0.5
-            flame_color = "rgba(0, 229, 255, 0.36)"
-            line_color = "#00E5FF"
+            flame_color = "rgba(217, 119, 87, 0.32)"
+            line_color = "#D97757"
             title_txt = f"1/6g Lunar Partial-Gravity Flame ({o2_level}% O₂, {vent_speed} cm/s Airflow)"
         else:
             x_outer = 1.1 * np.cos(theta) * (1 - 0.35 * np.sin(theta))
             y_outer = 2.6 * np.sin(theta) + 1.6
-            flame_color = "rgba(255, 77, 77, 0.42)"
-            line_color = "#FF4D4D"
+            flame_color = "rgba(217, 119, 87, 0.38)"
+            line_color = "#D97757"
             title_txt = f"1g Buoyant Teardrop Flame ({o2_level}% O₂, ~100 cm/s Buoyant Plume)"
 
         fig_flame = go.Figure()
         fig_flame.add_trace(go.Scatter(
             x=x_outer, y=y_outer, fill="toself",
-            fillcolor=flame_color, line=dict(color=line_color, width=3),
+            fillcolor=flame_color, line=dict(color=line_color, width=2.5),
             name="Reaction Zone"
         ))
         fig_flame.add_trace(go.Scatter(
             x=0.35 * np.cos(theta), y=0.35 * np.sin(theta), fill="toself",
-            fillcolor="#F8FAFC", line=dict(color="#00E5FF", width=1.5),
+            fillcolor="#EAECEF", line=dict(color="#D97757", width=1.5),
             name="Fuel Sample / Burner (2 cm)"
         ))
         fig_flame.update_layout(
             title=title_txt,
             template="plotly_dark",
-            paper_bgcolor="#0F151E",
-            plot_bgcolor="#080B10",
-            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="#1E293B"),
-            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="#1E293B"),
+            paper_bgcolor="#1D2227",
+            plot_bgcolor="#14171A",
+            font=dict(color="#EAECEF"),
+            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="rgba(255,255,255,0.08)"),
+            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="rgba(255,255,255,0.08)"),
             height=400,
             margin=dict(l=20, r=20, t=45, b=20)
         )
@@ -767,7 +760,7 @@ elif st.session_state.active_page == "Flame Physics Lab":
 # ==============================================================================
 elif st.session_state.active_page == "Habitat SI Ranker":
     st.title("Mission Habitat Relevance & SI Priority Ranker")
-    st.markdown("Select a human spaceflight habitat and fire safety pillar to rank the most relevant NASA PSI investigations.")
+    st.markdown("Select a crew habitat environment and safety pillar to rank the highest-priority NASA PSI investigations.")
 
     c1, c2 = st.columns(2)
     with c1:
@@ -803,14 +796,16 @@ elif st.session_state.active_page == "Habitat SI Ranker":
         top10 = ranked_df.head(10)
         fig_rank = px.bar(
             top10[::-1], x="SI Relevance Score", y="id", orientation="h",
-            color="SI Relevance Score", color_continuous_scale=["#1E293B", "#00E5FF"],
+            color="SI Relevance Score", color_continuous_scale=["#52B788", "#D97757"],
             hover_data=["name", "pillar", "hardware"],
             title=f"Top 10 Ranked PSI Investigations for {habitat}"
         )
         fig_rank.update_layout(
-            template="plotly_dark", paper_bgcolor="#0F151E",
-            plot_bgcolor="#080B10", height=370, showlegend=False,
-            xaxis=dict(gridcolor="#1E293B"), yaxis=dict(gridcolor="#1E293B")
+            template="plotly_dark", paper_bgcolor="#1D2227",
+            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
+            height=370, showlegend=False,
+            xaxis=dict(gridcolor="rgba(255,255,255,0.08)"),
+            yaxis=dict(gridcolor="rgba(255,255,255,0.08)")
         )
         st.plotly_chart(fig_rank, use_container_width=True)
 
@@ -825,24 +820,25 @@ elif st.session_state.active_page == "Habitat SI Ranker":
         ])
         fig_env = px.scatter(
             env_df, x="Pressure_psi", y="O2_pct", text="Environment",
-            size=[22, 26, 34, 30, 36, 38], color="O2_pct",
-            color_continuous_scale=["#00E5FF", "#80F2FF", "#FF4D4D"],
+            size=[20, 24, 32, 28, 34, 36], color="O2_pct",
+            color_continuous_scale=["#52B788", "#D97757"],
             title="Spacecraft & Planetary Atmosphere Flammability Envelopes"
         )
         fig_env.update_traces(textposition="top center")
         fig_env.update_layout(
-            template="plotly_dark", paper_bgcolor="#0F151E",
-            plot_bgcolor="#080B10", height=370,
+            template="plotly_dark", paper_bgcolor="#1D2227",
+            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
+            height=370,
             xaxis_title="Cabin Pressure (psi)", yaxis_title="Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[10, 115], gridcolor="#1E293B"),
-            xaxis=dict(range=[2, 19], gridcolor="#1E293B")
+            yaxis=dict(range=[10, 115], gridcolor="rgba(255,255,255,0.08)"),
+            xaxis=dict(range=[2, 19], gridcolor="rgba(255,255,255,0.08)")
         )
         st.plotly_chart(fig_env, use_container_width=True)
 
     st.subheader(f"Prioritized Investigation Briefings for {habitat}")
     for _, r in ranked_df.head(6).iterrows():
-        with st.expander(f"💠 {r['SI Relevance Score']}% Match | {r['id']}: {r['name']} ({r['hardware']})"):
-            st.markdown(f"**Plain-English Insight:** {r['plain_summary']}")
+        with st.expander(f"[{r['SI Relevance Score']}% MATCH] {r['id']}: {r['name']} — {r['hardware']}"):
+            st.markdown(f"**Engineering Takeaway:** {r['plain_summary']}")
             st.markdown(f"- **Test Envelope:** `{r['o2_min']}–{r['o2_max']}% O₂` | `{r['p_min']}–{r['p_max']} atm` | Airflow: `{r['flow_min']}–{r['flow_max']} cm/s`")
             st.markdown(f"- **Fuels / Materials:** {r['fuels']}")
             st.markdown(f"- **Diagnostics & Sensors:** {r['sensors']}")
@@ -869,34 +865,34 @@ elif st.session_state.active_page == "Flammability & Partial-g":
         fig_map.add_trace(go.Scatter(
             x=v_flow, y=nasa_test1_limit, mode="lines",
             name="NASA-STD-6001 Test 1 Limit (1g Earth Standard ~18.5% O₂)",
-            line=dict(color="#94A3B8", width=2.5, dash="dash")
+            line=dict(color="#52B788", width=2.5, dash="dash")
         ))
         fig_map.add_trace(go.Scatter(
             x=v_flow, y=loi_0g, mode="lines",
             name="Actual 0g Microgravity Flammability Limit (BASS / BASS-II)",
-            line=dict(color="#00E5FF", width=3.5),
-            fill="tonexty", fillcolor="rgba(255, 77, 77, 0.22)"
+            line=dict(color="#D97757", width=3.5),
+            fill="tonexty", fillcolor="rgba(217, 119, 87, 0.22)"
         ))
         fig_map.add_annotation(
             x=10, y=14.6, text="0g Minimum LOI (~10 cm/s)<br>Negative Oxygen Margin of Safety",
-            showarrow=True, arrowhead=2, ax=40, ay=35, font=dict(color="#FF4D4D")
+            showarrow=True, arrowhead=2, ax=40, ay=35, font=dict(color="#EAECEF")
         )
-        fig_map.add_hrect(y0=30, y1=36, fillcolor="rgba(0, 229, 255, 0.12)", line_width=0,
+        fig_map.add_hrect(y0=30, y1=36, fillcolor="rgba(82, 183, 136, 0.12)", line_width=0,
                           annotation_text="Artemis Lunar Base Target Atmosphere (30–34% O₂)")
 
         fig_map.update_layout(
             title="Flammability Map: Limiting Oxygen Concentration vs. Ventilation Velocity",
-            template="plotly_dark", paper_bgcolor="#0F151E",
-            plot_bgcolor="#080B10",
+            template="plotly_dark", paper_bgcolor="#1D2227",
+            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
             xaxis_title="Forced or Buoyant Airflow Velocity (cm/s)",
             yaxis_title="Ambient Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[12, 37], gridcolor="#1E293B"),
-            xaxis=dict(gridcolor="#1E293B"), height=420
+            yaxis=dict(range=[12, 37], gridcolor="rgba(255,255,255,0.08)"),
+            xaxis=dict(gridcolor="rgba(255,255,255,0.08)"), height=420
         )
         st.plotly_chart(fig_map, use_container_width=True)
 
     with col_right:
-        st.subheader("3 Critical Spacecraft Fire Traps")
+        st.subheader("Critical Spacecraft Fire Traps")
         st.markdown("""
         <div class="alert-box">
         <strong>1. Upstream Flame Spread (PSI-26):</strong><br>
@@ -907,8 +903,8 @@ elif st.session_state.active_page == "Flammability & Partial-g":
         Aiming a local N₂ extinguisher jet at a wake-stabilized flame in 0g can <em>strengthen</em> the fire by entraining cabin oxygen.
         </div>
         <div class="insight-box">
-        <strong>3. Partial-Gravity Bounding (PSI-22 & FM2):</strong><br>
-        PSI currently lacks 1/6g Lunar data. <strong>ACME E-FIELD (PSI-22)</strong> uses up to <strong>10 kV</strong> electric fields on flame ions to simulate intermediate buoyant convection until Lunar <strong>FM2</strong> & <strong>LUCI</strong> data arrive.
+        <strong>3. Partial-Gravity Bounding (PSI-22 &amp; FM2):</strong><br>
+        PSI currently lacks 1/6g Lunar data. <strong>ACME E-FIELD (PSI-22)</strong> uses up to <strong>10 kV</strong> electric fields on flame ions to simulate intermediate buoyant convection until Lunar <strong>FM2</strong> &amp; <strong>LUCI</strong> data arrive.
         </div>
         """, unsafe_allow_html=True)
 
@@ -972,7 +968,7 @@ elif st.session_state.active_page == "Forensics & Spinoffs":
         <div class="alert-box">
         <h4>Apollo 1 (Jan 27, 1967)</h4>
         <strong>Condition:</strong> 100% O₂ at 16.7 psi on Launch Pad 34.<br>
-        <strong>Cause:</strong> Wire arcing near ECS ignited Velcro & nylon; inward hatch pinned shut.<br>
+        <strong>Cause:</strong> Wire arcing near ECS ignited Velcro &amp; nylon; inward hatch pinned shut.<br>
         <strong>Legacy:</strong> Outward 3-sec hatch, strict NASA-STD-6001 material limits, and fireproof PBI/Beta cloth suits.
         </div>
         """, unsafe_allow_html=True)
@@ -1000,28 +996,28 @@ elif st.session_state.active_page == "Forensics & Spinoffs":
     with s1:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val">20 lbs</div>
+        <div class="metric-val" style="color:#52B788;">20 lbs</div>
         <div class="metric-lbl"><strong>Scott Air-Pak 4.5 Tanks</strong><br>Composite 4,500 psi tanks cut firefighter SCBA weight by 13 lbs (from 33 lbs).</div>
         </div>
         """, unsafe_allow_html=True)
     with s2:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val">U508</div>
+        <div class="metric-val" style="color:#52B788;">U508</div>
         <div class="metric-lbl"><strong>Dust-Immune Smoke Sensor</strong><br>Shuttle/SAME/DAFT aerosol sizing discriminates smoke from mining dust.</div>
         </div>
         """, unsafe_allow_html=True)
     with s3:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val">12.5 lbs</div>
-        <div class="metric-lbl"><strong>Project FIRES Turnout Gear</strong><br>Apollo PBI & GORE-TEX vapor barrier cut gear weight 40% & heat stress.</div>
+        <div class="metric-val" style="color:#52B788;">12.5 lbs</div>
+        <div class="metric-lbl"><strong>Project FIRES Turnout Gear</strong><br>Apollo PBI &amp; GORE-TEX vapor barrier cut gear weight 40% &amp; heat stress.</div>
         </div>
         """, unsafe_allow_html=True)
     with s4:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val" style="color:#FF4D4D;">ISS Mist</div>
-        <div class="metric-lbl"><strong>Fine-Water-Mist Extinguishers</strong><br>Non-toxic micro-droplet suppression replacing Halon & CO₂ units.</div>
+        <div class="metric-val" style="color:#D97757;">ISS Mist</div>
+        <div class="metric-lbl"><strong>Fine-Water-Mist Extinguishers</strong><br>Non-toxic micro-droplet suppression replacing Halon &amp; CO₂ units.</div>
         </div>
         """, unsafe_allow_html=True)
