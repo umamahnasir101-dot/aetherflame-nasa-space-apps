@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 # ==============================================================================
-# PAGE CONFIG & ANODIZED TITANIUM / TERRACOTTA COPPER PRECISION THEME
+# PAGE CONFIG & PALETTE B: ORBITAL COPPER & LUNAR DUST THEME
 # ==============================================================================
 st.set_page_config(
     page_title="AETHERFLAME | Microgravity Fire Safety Telemetry",
@@ -27,9 +27,9 @@ st.markdown("""
         color: #EAECEF !important;
     }
 
-    /* Anodized Titanium (#14171A) Background */
+    /* Matte Charcoal (#161A1D) Background */
     .stApp {
-        background-color: #14171A;
+        background-color: #161A1D;
         color: #EAECEF;
         overflow-x: hidden;
     }
@@ -38,13 +38,13 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Precision Telemetry Hero Stage */
+    /* Precision Telemetry Hero Stage — Rich Obsidian Slate (#1F2429) */
     .hero-stage {
         position: relative;
         width: 100%;
         border-radius: 6px;
-        background-color: #1D2227;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background-color: #1F2429;
+        border: 1px solid #2E353D;
         padding: 34px 32px 30px 32px;
         margin-bottom: 20px;
         display: flex;
@@ -65,7 +65,7 @@ st.markdown("""
         justify-content: center;
     }
 
-    /* Technical Monospace Eyebrow (No Rounded Pill) */
+    /* Technical Monospace Eyebrow */
     .tech-eyebrow {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.76rem;
@@ -87,7 +87,7 @@ st.markdown("""
         display: inline-block;
     }
 
-    /* Tight Geometric Sans-Serif Title */
+    /* Tight Geometric Sans-Serif Title — Lunar Dust (#EAECEF) */
     .hero-title {
         font-family: 'Space Grotesk', sans-serif;
         font-size: clamp(2.3rem, 4.5vw, 3.6rem);
@@ -106,10 +106,10 @@ st.markdown("""
         margin: 0;
     }
 
-    /* Sharp Hairline Module Cards (#1D2227, 5px radius) */
+    /* Sharp Hairline Module Cards (#1F2429 with #2E353D border, 5px radius) */
     .nav-card {
-        background-color: #1D2227;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background-color: #1F2429;
+        border: 1px solid #2E353D;
         border-radius: 5px;
         padding: 20px;
         min-height: 165px;
@@ -118,7 +118,7 @@ st.markdown("""
     }
     .nav-card:hover {
         border-color: #D97757;
-        background-color: #21272D;
+        background-color: #242A30;
     }
     .nav-card-code {
         font-family: 'JetBrains Mono', monospace;
@@ -138,7 +138,7 @@ st.markdown("""
     }
     .nav-card-desc {
         font-size: 0.87rem;
-        color: #A0A8B2;
+        color: #B0B7C0;
         line-height: 1.48;
     }
 
@@ -146,8 +146,8 @@ st.markdown("""
     div.stButton > button {
         width: 100%;
         border-radius: 5px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        background-color: #1D2227;
+        border: 1px solid #2E353D;
+        background-color: #1F2429;
         color: #EAECEF;
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.82rem;
@@ -158,13 +158,13 @@ st.markdown("""
     div.stButton > button:hover {
         border-color: #D97757;
         background-color: #D97757;
-        color: #14171A;
+        color: #161A1D;
     }
 
     /* KPI Telemetry Strip */
     .metric-card {
-        background-color: #1D2227;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background-color: #1F2429;
+        border: 1px solid #2E353D;
         border-radius: 5px;
         padding: 16px 18px;
     }
@@ -177,7 +177,7 @@ st.markdown("""
     .metric-lbl {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.75rem;
-        color: #9CA3AF;
+        color: #B0B7C0;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-top: 4px;
@@ -185,8 +185,8 @@ st.markdown("""
 
     /* Callout Panels */
     .insight-box {
-        background-color: #1D2227;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background-color: #1F2429;
+        border: 1px solid #2E353D;
         border-left: 3px solid #52B788;
         border-radius: 5px;
         padding: 15px 18px;
@@ -196,8 +196,8 @@ st.markdown("""
         line-height: 1.5;
     }
     .alert-box {
-        background-color: #1D2227;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background-color: #1F2429;
+        border: 1px solid #2E353D;
         border-left: 3px solid #D97757;
         border-radius: 5px;
         padding: 15px 18px;
@@ -552,7 +552,7 @@ if st.session_state.active_page != "Home":
     st.divider()
 
 # ==============================================================================
-# FRONT PAGE (ANODIZED TITANIUM STAGE + SVG SPHERICAL FLAME WIREFRAME)
+# FRONT PAGE (MATTE CHARCOAL & OBSIDIAN STAGE + SVG SPHERICAL FLAME WIREFRAME)
 # ==============================================================================
 if st.session_state.active_page == "Home":
     st.markdown("""
@@ -571,18 +571,18 @@ if st.session_state.active_page == "Home":
         <div class="hero-right">
             <!-- Precision SVG Wireframe of a Spherical Microgravity Diffusion Flame & Calibration Reticle -->
             <svg width="176" height="176" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="90" cy="90" r="82" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="3 3"/>
-                <circle cx="90" cy="90" r="64" stroke="#D97757" stroke-width="1.2" stroke-opacity="0.75"/>
+                <circle cx="90" cy="90" r="82" stroke="#2E353D" stroke-width="1" stroke-dasharray="3 3"/>
+                <circle cx="90" cy="90" r="64" stroke="#D97757" stroke-width="1.2" stroke-opacity="0.85"/>
                 <circle cx="90" cy="90" r="44" stroke="#52B788" stroke-width="1" stroke-dasharray="4 4"/>
-                <ellipse cx="90" cy="90" rx="64" ry="22" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
-                <ellipse cx="90" cy="90" rx="22" ry="64" stroke="rgba(255,255,255,0.16)" stroke-width="1"/>
+                <ellipse cx="90" cy="90" rx="64" ry="22" stroke="#2E353D" stroke-width="1.2"/>
+                <ellipse cx="90" cy="90" rx="22" ry="64" stroke="#2E353D" stroke-width="1.2"/>
                 <!-- Calibration Crosshairs -->
                 <line x1="90" y1="2" x2="90" y2="20" stroke="#D97757" stroke-width="1.2"/>
                 <line x1="90" y1="160" x2="90" y2="178" stroke="#D97757" stroke-width="1.2"/>
                 <line x1="2" y1="90" x2="20" y2="90" stroke="#D97757" stroke-width="1.2"/>
                 <line x1="160" y1="90" x2="178" y2="90" stroke="#D97757" stroke-width="1.2"/>
                 <!-- Porous Burner Core -->
-                <circle cx="90" cy="90" r="10" fill="#14171A" stroke="#EAECEF" stroke-width="1.5"/>
+                <circle cx="90" cy="90" r="10" fill="#161A1D" stroke="#EAECEF" stroke-width="1.5"/>
                 <circle cx="90" cy="90" r="3" fill="#D97757"/>
             </svg>
         </div>
@@ -745,11 +745,11 @@ elif st.session_state.active_page == "Flame Physics Lab":
         fig_flame.update_layout(
             title=title_txt,
             template="plotly_dark",
-            paper_bgcolor="#1D2227",
-            plot_bgcolor="#14171A",
+            paper_bgcolor="#1F2429",
+            plot_bgcolor="#161A1D",
             font=dict(color="#EAECEF"),
-            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="rgba(255,255,255,0.08)"),
-            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="rgba(255,255,255,0.08)"),
+            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="#2E353D"),
+            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="#2E353D"),
             height=400,
             margin=dict(l=20, r=20, t=45, b=20)
         )
@@ -801,11 +801,11 @@ elif st.session_state.active_page == "Habitat SI Ranker":
             title=f"Top 10 Ranked PSI Investigations for {habitat}"
         )
         fig_rank.update_layout(
-            template="plotly_dark", paper_bgcolor="#1D2227",
-            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#1F2429",
+            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
             height=370, showlegend=False,
-            xaxis=dict(gridcolor="rgba(255,255,255,0.08)"),
-            yaxis=dict(gridcolor="rgba(255,255,255,0.08)")
+            xaxis=dict(gridcolor="#2E353D"),
+            yaxis=dict(gridcolor="#2E353D")
         )
         st.plotly_chart(fig_rank, use_container_width=True)
 
@@ -826,12 +826,12 @@ elif st.session_state.active_page == "Habitat SI Ranker":
         )
         fig_env.update_traces(textposition="top center")
         fig_env.update_layout(
-            template="plotly_dark", paper_bgcolor="#1D2227",
-            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#1F2429",
+            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
             height=370,
             xaxis_title="Cabin Pressure (psi)", yaxis_title="Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[10, 115], gridcolor="rgba(255,255,255,0.08)"),
-            xaxis=dict(range=[2, 19], gridcolor="rgba(255,255,255,0.08)")
+            yaxis=dict(range=[10, 115], gridcolor="#2E353D"),
+            xaxis=dict(range=[2, 19], gridcolor="#2E353D")
         )
         st.plotly_chart(fig_env, use_container_width=True)
 
@@ -882,12 +882,12 @@ elif st.session_state.active_page == "Flammability & Partial-g":
 
         fig_map.update_layout(
             title="Flammability Map: Limiting Oxygen Concentration vs. Ventilation Velocity",
-            template="plotly_dark", paper_bgcolor="#1D2227",
-            plot_bgcolor="#14171A", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#1F2429",
+            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
             xaxis_title="Forced or Buoyant Airflow Velocity (cm/s)",
             yaxis_title="Ambient Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[12, 37], gridcolor="rgba(255,255,255,0.08)"),
-            xaxis=dict(gridcolor="rgba(255,255,255,0.08)"), height=420
+            yaxis=dict(range=[12, 37], gridcolor="#2E353D"),
+            xaxis=dict(gridcolor="#2E353D"), height=420
         )
         st.plotly_chart(fig_map, use_container_width=True)
 
