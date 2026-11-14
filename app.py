@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 
 # ==============================================================================
-# PAGE CONFIG & PALETTE B: ORBITAL COPPER & LUNAR DUST THEME
+# PAGE CONFIG & PALETTE F: DEEP GRAPHITE, DARKEST OBSIDIAN PURPLE & SOLAR GOLD
 # ==============================================================================
 st.set_page_config(
     page_title="AETHERFLAME | Microgravity Fire Safety Telemetry",
@@ -24,13 +24,13 @@ st.markdown("""
     h1, h2, h3 {
         font-family: 'Space Grotesk', sans-serif !important;
         letter-spacing: -0.02em;
-        color: #EAECEF !important;
+        color: #F8FAFC !important;
     }
 
-    /* Matte Charcoal (#161A1D) Background */
+    /* Deep Graphite Dark Grey (#111215) Base */
     .stApp {
-        background-color: #161A1D;
-        color: #EAECEF;
+        background-color: #111215;
+        color: #F8FAFC;
         overflow-x: hidden;
     }
 
@@ -38,13 +38,13 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* Precision Telemetry Hero Stage — Rich Obsidian Slate (#1F2429) */
+    /* Precision Telemetry Hero Stage — Darkest Obsidian Plum-Purple (#181123) */
     .hero-stage {
         position: relative;
         width: 100%;
         border-radius: 6px;
-        background-color: #1F2429;
-        border: 1px solid #2E353D;
+        background-color: #181123;
+        border: 1px solid #2A1B3D;
         padding: 34px 32px 30px 32px;
         margin-bottom: 20px;
         display: flex;
@@ -70,7 +70,7 @@ st.markdown("""
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.76rem;
         font-weight: 500;
-        color: #D97757;
+        color: #FFD046;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         margin-bottom: 10px;
@@ -83,16 +83,16 @@ st.markdown("""
         width: 7px;
         height: 7px;
         border-radius: 50%;
-        background-color: #52B788;
+        background-color: #FFD046;
         display: inline-block;
     }
 
-    /* Tight Geometric Sans-Serif Title — Lunar Dust (#EAECEF) */
+    /* Tight Geometric Sans-Serif Title — Crisp White (#F8FAFC) */
     .hero-title {
         font-family: 'Space Grotesk', sans-serif;
         font-size: clamp(2.3rem, 4.5vw, 3.6rem);
         font-weight: 700;
-        color: #EAECEF;
+        color: #F8FAFC;
         letter-spacing: -0.03em;
         line-height: 1.05;
         margin: 0 0 12px 0;
@@ -100,16 +100,16 @@ st.markdown("""
 
     .hero-sub {
         font-size: 0.98rem;
-        color: #B0B7C0;
+        color: #CBD5E1;
         max-width: 680px;
         line-height: 1.55;
         margin: 0;
     }
 
-    /* Sharp Hairline Module Cards (#1F2429 with #2E353D border, 5px radius) */
+    /* Sharp Hairline Module Cards (#181123 with #2A1B3D Deep Royal Eggplant border) */
     .nav-card {
-        background-color: #1F2429;
-        border: 1px solid #2E353D;
+        background-color: #181123;
+        border: 1px solid #2A1B3D;
         border-radius: 5px;
         padding: 20px;
         min-height: 165px;
@@ -117,13 +117,13 @@ st.markdown("""
         margin-bottom: 10px;
     }
     .nav-card:hover {
-        border-color: #D97757;
-        background-color: #242A30;
+        border-color: #FFD046;
+        background-color: #2A1B3D;
     }
     .nav-card-code {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.75rem;
-        color: #D97757;
+        color: #FFD046;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         margin-bottom: 6px;
@@ -132,13 +132,13 @@ st.markdown("""
         font-family: 'Space Grotesk', sans-serif;
         font-size: 1.15rem;
         font-weight: 700;
-        color: #EAECEF;
+        color: #F8FAFC;
         letter-spacing: -0.01em;
         margin-bottom: 8px;
     }
     .nav-card-desc {
         font-size: 0.87rem;
-        color: #B0B7C0;
+        color: #CBD5E1;
         line-height: 1.48;
     }
 
@@ -146,9 +146,9 @@ st.markdown("""
     div.stButton > button {
         width: 100%;
         border-radius: 5px;
-        border: 1px solid #2E353D;
-        background-color: #1F2429;
-        color: #EAECEF;
+        border: 1px solid #2A1B3D;
+        background-color: #181123;
+        color: #F8FAFC;
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.82rem;
         font-weight: 500;
@@ -156,15 +156,15 @@ st.markdown("""
         transition: all 0.18s ease;
     }
     div.stButton > button:hover {
-        border-color: #D97757;
-        background-color: #D97757;
-        color: #161A1D;
+        border-color: #FFD046;
+        background-color: #FFD046;
+        color: #111215;
     }
 
     /* KPI Telemetry Strip */
     .metric-card {
-        background-color: #1F2429;
-        border: 1px solid #2E353D;
+        background-color: #181123;
+        border: 1px solid #2A1B3D;
         border-radius: 5px;
         padding: 16px 18px;
     }
@@ -172,12 +172,12 @@ st.markdown("""
         font-family: 'JetBrains Mono', monospace;
         font-size: 1.55rem;
         font-weight: 600;
-        color: #EAECEF;
+        color: #F8FAFC;
     }
     .metric-lbl {
         font-family: 'JetBrains Mono', monospace;
         font-size: 0.75rem;
-        color: #B0B7C0;
+        color: #CBD5E1;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-top: 4px;
@@ -185,24 +185,24 @@ st.markdown("""
 
     /* Callout Panels */
     .insight-box {
-        background-color: #1F2429;
-        border: 1px solid #2E353D;
-        border-left: 3px solid #52B788;
+        background-color: #181123;
+        border: 1px solid #2A1B3D;
+        border-left: 3px solid #FFD046;
         border-radius: 5px;
         padding: 15px 18px;
         margin: 10px 0;
-        color: #EAECEF;
+        color: #F8FAFC;
         font-size: 0.92rem;
         line-height: 1.5;
     }
     .alert-box {
-        background-color: #1F2429;
-        border: 1px solid #2E353D;
-        border-left: 3px solid #D97757;
+        background-color: #2A1B3D;
+        border: 1px solid #3C2856;
+        border-left: 3px solid #FFD046;
         border-radius: 5px;
         padding: 15px 18px;
         margin: 10px 0;
-        color: #EAECEF;
+        color: #F8FAFC;
         font-size: 0.92rem;
         line-height: 1.5;
     }
@@ -534,8 +534,8 @@ if st.session_state.active_page != "Home":
             st.rerun()
     with top_col2:
         st.markdown(
-            f"<div style='text-align:center; padding-top:7px; font-family:JetBrains Mono,monospace; color:#EAECEF; font-size:0.95rem; letter-spacing:0.06em;'>"
-            f"<span style='color:#D97757;'>AETHERFLAME</span> &nbsp;//&nbsp; {st.session_state.active_page.upper()}"
+            f"<div style='text-align:center; padding-top:7px; font-family:JetBrains Mono,monospace; color:#F8FAFC; font-size:0.95rem; letter-spacing:0.06em;'>"
+            f"<span style='color:#FFD046;'>AETHERFLAME</span> &nbsp;//&nbsp; {st.session_state.active_page.upper()}"
             f"</div>",
             unsafe_allow_html=True
         )
@@ -552,7 +552,7 @@ if st.session_state.active_page != "Home":
     st.divider()
 
 # ==============================================================================
-# FRONT PAGE (MATTE CHARCOAL & OBSIDIAN STAGE + SVG SPHERICAL FLAME WIREFRAME)
+# FRONT PAGE (GRAPHITE & OBSIDIAN PLUM STAGE + SVG SPHERICAL FLAME WIREFRAME)
 # ==============================================================================
 if st.session_state.active_page == "Home":
     st.markdown("""
@@ -571,19 +571,19 @@ if st.session_state.active_page == "Home":
         <div class="hero-right">
             <!-- Precision SVG Wireframe of a Spherical Microgravity Diffusion Flame & Calibration Reticle -->
             <svg width="176" height="176" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="90" cy="90" r="82" stroke="#2E353D" stroke-width="1" stroke-dasharray="3 3"/>
-                <circle cx="90" cy="90" r="64" stroke="#D97757" stroke-width="1.2" stroke-opacity="0.85"/>
-                <circle cx="90" cy="90" r="44" stroke="#52B788" stroke-width="1" stroke-dasharray="4 4"/>
-                <ellipse cx="90" cy="90" rx="64" ry="22" stroke="#2E353D" stroke-width="1.2"/>
-                <ellipse cx="90" cy="90" rx="22" ry="64" stroke="#2E353D" stroke-width="1.2"/>
+                <circle cx="90" cy="90" r="82" stroke="#2A1B3D" stroke-width="1" stroke-dasharray="3 3"/>
+                <circle cx="90" cy="90" r="64" stroke="#FFD046" stroke-width="1.2" stroke-opacity="0.85"/>
+                <circle cx="90" cy="90" r="44" stroke="#CBD5E1" stroke-width="1" stroke-opacity="0.45" stroke-dasharray="4 4"/>
+                <ellipse cx="90" cy="90" rx="64" ry="22" stroke="#2A1B3D" stroke-width="1.2"/>
+                <ellipse cx="90" cy="90" rx="22" ry="64" stroke="#2A1B3D" stroke-width="1.2"/>
                 <!-- Calibration Crosshairs -->
-                <line x1="90" y1="2" x2="90" y2="20" stroke="#D97757" stroke-width="1.2"/>
-                <line x1="90" y1="160" x2="90" y2="178" stroke="#D97757" stroke-width="1.2"/>
-                <line x1="2" y1="90" x2="20" y2="90" stroke="#D97757" stroke-width="1.2"/>
-                <line x1="160" y1="90" x2="178" y2="90" stroke="#D97757" stroke-width="1.2"/>
+                <line x1="90" y1="2" x2="90" y2="20" stroke="#FFD046" stroke-width="1.2"/>
+                <line x1="90" y1="160" x2="90" y2="178" stroke="#FFD046" stroke-width="1.2"/>
+                <line x1="2" y1="90" x2="20" y2="90" stroke="#FFD046" stroke-width="1.2"/>
+                <line x1="160" y1="90" x2="178" y2="90" stroke="#FFD046" stroke-width="1.2"/>
                 <!-- Porous Burner Core -->
-                <circle cx="90" cy="90" r="10" fill="#161A1D" stroke="#EAECEF" stroke-width="1.5"/>
-                <circle cx="90" cy="90" r="3" fill="#D97757"/>
+                <circle cx="90" cy="90" r="10" fill="#111215" stroke="#F8FAFC" stroke-width="1.5"/>
+                <circle cx="90" cy="90" r="3" fill="#FFD046"/>
             </svg>
         </div>
     </div>
@@ -594,9 +594,9 @@ if st.session_state.active_page == "Home":
     with k1:
         st.markdown('<div class="metric-card"><div class="metric-val">26+</div><div class="metric-lbl">PSI Investigations Indexed</div></div>', unsafe_allow_html=True)
     with k2:
-        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#D97757;">10 cm/s</div><div class="metric-lbl">Peak 0g Ventilation Trap</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#FFD046;">10 cm/s</div><div class="metric-lbl">Peak 0g Ventilation Trap</div></div>', unsafe_allow_html=True)
     with k3:
-        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#52B788;">≥30% O₂</div><div class="metric-lbl">Lunar Base Atmosphere</div></div>', unsafe_allow_html=True)
+        st.markdown('<div class="metric-card"><div class="metric-val" style="color:#FFD046;">≥30% O₂</div><div class="metric-lbl">Lunar Base Atmosphere</div></div>', unsafe_allow_html=True)
     with k4:
         st.markdown('<div class="metric-card"><div class="metric-val">500–800 K</div><div class="metric-lbl">Invisible Cool Flame Zone</div></div>', unsafe_allow_html=True)
 
@@ -714,21 +714,21 @@ elif st.session_state.active_page == "Flame Physics Lab":
             r_outer = 1.6 + (o2_level - 21) * 0.03
             x_outer = r_outer * np.cos(theta) * stretch + shift_x
             y_outer = r_outer * np.sin(theta)
-            flame_color = "rgba(82, 183, 136, 0.28)" if o2_level <= 26 else "rgba(217, 119, 87, 0.34)"
-            line_color = "#52B788" if o2_level <= 26 else "#D97757"
+            flame_color = "rgba(255, 208, 70, 0.25)" if o2_level <= 26 else "rgba(255, 208, 70, 0.36)"
+            line_color = "#FFD046"
             title_txt = f"0g Diffusion Flame Envelope ({o2_level}% O₂, {vent_speed} cm/s Airflow)"
         elif "Lunar" in grav_mode:
             stretch = 1.35 + (vent_speed / 30.0) * 0.9
             x_outer = (1.5 + (o2_level - 21) * 0.03) * np.cos(theta)
             y_outer = (1.5 + (o2_level - 21) * 0.03) * np.sin(theta) * stretch + 0.5
-            flame_color = "rgba(217, 119, 87, 0.32)"
-            line_color = "#D97757"
+            flame_color = "rgba(255, 208, 70, 0.32)"
+            line_color = "#FFD046"
             title_txt = f"1/6g Lunar Partial-Gravity Flame ({o2_level}% O₂, {vent_speed} cm/s Airflow)"
         else:
             x_outer = 1.1 * np.cos(theta) * (1 - 0.35 * np.sin(theta))
             y_outer = 2.6 * np.sin(theta) + 1.6
-            flame_color = "rgba(217, 119, 87, 0.38)"
-            line_color = "#D97757"
+            flame_color = "rgba(255, 208, 70, 0.38)"
+            line_color = "#FFD046"
             title_txt = f"1g Buoyant Teardrop Flame ({o2_level}% O₂, ~100 cm/s Buoyant Plume)"
 
         fig_flame = go.Figure()
@@ -739,17 +739,17 @@ elif st.session_state.active_page == "Flame Physics Lab":
         ))
         fig_flame.add_trace(go.Scatter(
             x=0.35 * np.cos(theta), y=0.35 * np.sin(theta), fill="toself",
-            fillcolor="#EAECEF", line=dict(color="#D97757", width=1.5),
+            fillcolor="#F8FAFC", line=dict(color="#FFD046", width=1.5),
             name="Fuel Sample / Burner (2 cm)"
         ))
         fig_flame.update_layout(
             title=title_txt,
             template="plotly_dark",
-            paper_bgcolor="#1F2429",
-            plot_bgcolor="#161A1D",
-            font=dict(color="#EAECEF"),
-            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="#2E353D"),
-            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="#2E353D"),
+            paper_bgcolor="#181123",
+            plot_bgcolor="#111215",
+            font=dict(color="#F8FAFC"),
+            xaxis=dict(range=[-4.5, 5.5], title="Axial / Ventilation Direction (cm)", zeroline=False, gridcolor="#2A1B3D"),
+            yaxis=dict(range=[-3.5, 5.0], title="Vertical / Radial Axis (cm)", scaleanchor="x", scaleratio=1, zeroline=False, gridcolor="#2A1B3D"),
             height=400,
             margin=dict(l=20, r=20, t=45, b=20)
         )
@@ -796,16 +796,16 @@ elif st.session_state.active_page == "Habitat SI Ranker":
         top10 = ranked_df.head(10)
         fig_rank = px.bar(
             top10[::-1], x="SI Relevance Score", y="id", orientation="h",
-            color="SI Relevance Score", color_continuous_scale=["#52B788", "#D97757"],
+            color="SI Relevance Score", color_continuous_scale=["#2A1B3D", "#FFD046"],
             hover_data=["name", "pillar", "hardware"],
             title=f"Top 10 Ranked PSI Investigations for {habitat}"
         )
         fig_rank.update_layout(
-            template="plotly_dark", paper_bgcolor="#1F2429",
-            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#181123",
+            plot_bgcolor="#111215", font=dict(color="#F8FAFC"),
             height=370, showlegend=False,
-            xaxis=dict(gridcolor="#2E353D"),
-            yaxis=dict(gridcolor="#2E353D")
+            xaxis=dict(gridcolor="#2A1B3D"),
+            yaxis=dict(gridcolor="#2A1B3D")
         )
         st.plotly_chart(fig_rank, use_container_width=True)
 
@@ -821,17 +821,17 @@ elif st.session_state.active_page == "Habitat SI Ranker":
         fig_env = px.scatter(
             env_df, x="Pressure_psi", y="O2_pct", text="Environment",
             size=[20, 24, 32, 28, 34, 36], color="O2_pct",
-            color_continuous_scale=["#52B788", "#D97757"],
+            color_continuous_scale=["#3C2856", "#FFD046"],
             title="Spacecraft & Planetary Atmosphere Flammability Envelopes"
         )
         fig_env.update_traces(textposition="top center")
         fig_env.update_layout(
-            template="plotly_dark", paper_bgcolor="#1F2429",
-            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#181123",
+            plot_bgcolor="#111215", font=dict(color="#F8FAFC"),
             height=370,
             xaxis_title="Cabin Pressure (psi)", yaxis_title="Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[10, 115], gridcolor="#2E353D"),
-            xaxis=dict(range=[2, 19], gridcolor="#2E353D")
+            yaxis=dict(range=[10, 115], gridcolor="#2A1B3D"),
+            xaxis=dict(range=[2, 19], gridcolor="#2A1B3D")
         )
         st.plotly_chart(fig_env, use_container_width=True)
 
@@ -865,29 +865,29 @@ elif st.session_state.active_page == "Flammability & Partial-g":
         fig_map.add_trace(go.Scatter(
             x=v_flow, y=nasa_test1_limit, mode="lines",
             name="NASA-STD-6001 Test 1 Limit (1g Earth Standard ~18.5% O₂)",
-            line=dict(color="#52B788", width=2.5, dash="dash")
+            line=dict(color="#CBD5E1", width=2.5, dash="dash")
         ))
         fig_map.add_trace(go.Scatter(
             x=v_flow, y=loi_0g, mode="lines",
             name="Actual 0g Microgravity Flammability Limit (BASS / BASS-II)",
-            line=dict(color="#D97757", width=3.5),
-            fill="tonexty", fillcolor="rgba(217, 119, 87, 0.22)"
+            line=dict(color="#FFD046", width=3.5),
+            fill="tonexty", fillcolor="rgba(255, 208, 70, 0.20)"
         ))
         fig_map.add_annotation(
             x=10, y=14.6, text="0g Minimum LOI (~10 cm/s)<br>Negative Oxygen Margin of Safety",
-            showarrow=True, arrowhead=2, ax=40, ay=35, font=dict(color="#EAECEF")
+            showarrow=True, arrowhead=2, ax=40, ay=35, font=dict(color="#F8FAFC")
         )
-        fig_map.add_hrect(y0=30, y1=36, fillcolor="rgba(82, 183, 136, 0.12)", line_width=0,
+        fig_map.add_hrect(y0=30, y1=36, fillcolor="rgba(42, 27, 61, 0.45)", line_width=0,
                           annotation_text="Artemis Lunar Base Target Atmosphere (30–34% O₂)")
 
         fig_map.update_layout(
             title="Flammability Map: Limiting Oxygen Concentration vs. Ventilation Velocity",
-            template="plotly_dark", paper_bgcolor="#1F2429",
-            plot_bgcolor="#161A1D", font=dict(color="#EAECEF"),
+            template="plotly_dark", paper_bgcolor="#181123",
+            plot_bgcolor="#111215", font=dict(color="#F8FAFC"),
             xaxis_title="Forced or Buoyant Airflow Velocity (cm/s)",
             yaxis_title="Ambient Oxygen Concentration (% O₂)",
-            yaxis=dict(range=[12, 37], gridcolor="#2E353D"),
-            xaxis=dict(gridcolor="#2E353D"), height=420
+            yaxis=dict(range=[12, 37], gridcolor="#2A1B3D"),
+            xaxis=dict(gridcolor="#2A1B3D"), height=420
         )
         st.plotly_chart(fig_map, use_container_width=True)
 
@@ -996,28 +996,28 @@ elif st.session_state.active_page == "Forensics & Spinoffs":
     with s1:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val" style="color:#52B788;">20 lbs</div>
+        <div class="metric-val" style="color:#FFD046;">20 lbs</div>
         <div class="metric-lbl"><strong>Scott Air-Pak 4.5 Tanks</strong><br>Composite 4,500 psi tanks cut firefighter SCBA weight by 13 lbs (from 33 lbs).</div>
         </div>
         """, unsafe_allow_html=True)
     with s2:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val" style="color:#52B788;">U508</div>
+        <div class="metric-val" style="color:#FFD046;">U508</div>
         <div class="metric-lbl"><strong>Dust-Immune Smoke Sensor</strong><br>Shuttle/SAME/DAFT aerosol sizing discriminates smoke from mining dust.</div>
         </div>
         """, unsafe_allow_html=True)
     with s3:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val" style="color:#52B788;">12.5 lbs</div>
+        <div class="metric-val" style="color:#FFD046;">12.5 lbs</div>
         <div class="metric-lbl"><strong>Project FIRES Turnout Gear</strong><br>Apollo PBI &amp; GORE-TEX vapor barrier cut gear weight 40% &amp; heat stress.</div>
         </div>
         """, unsafe_allow_html=True)
     with s4:
         st.markdown("""
         <div class="metric-card">
-        <div class="metric-val" style="color:#D97757;">ISS Mist</div>
+        <div class="metric-val" style="color:#FFD046;">ISS Mist</div>
         <div class="metric-lbl"><strong>Fine-Water-Mist Extinguishers</strong><br>Non-toxic micro-droplet suppression replacing Halon &amp; CO₂ units.</div>
         </div>
         """, unsafe_allow_html=True)
